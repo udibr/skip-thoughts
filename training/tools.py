@@ -22,8 +22,8 @@ from model import init_params, build_encoder, build_encoder_w2v
 #-----------------------------------------------------------------------------#
 # Specify model and dictionary locations here
 #-----------------------------------------------------------------------------#
-path_to_model = '/u/rkiros/research/semhash/models/toy.npz'
-path_to_dictionary = '/ais/gobi3/u/rkiros/bookgen/book_dictionary_large.pkl'
+path_to_model = 'data/skip-thoughts-model.npz'
+path_to_dictionary = 'data/skip-thoughts-model.pkl'
 path_to_word2vec = '/ais/gobi3/u/rkiros/word2vec/GoogleNews-vectors-negative300.bin'
 #-----------------------------------------------------------------------------#
 
