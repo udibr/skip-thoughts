@@ -20,14 +20,8 @@ from utils import load_params, init_tparams
 from model import init_params, build_encoder, build_encoder_w2v
 
 #-----------------------------------------------------------------------------#
-# Specify model and dictionary locations here
-#-----------------------------------------------------------------------------#
-path_to_model = 'data/skip-thoughts-model.npz'
-path_to_dictionary = 'data/skip-thoughts-model.pkl'
-path_to_word2vec = '/ais/gobi3/u/rkiros/word2vec/GoogleNews-vectors-negative300.bin'
-#-----------------------------------------------------------------------------#
 
-def load_model(embed_map=None):
+def load_model(path_to_model, path_to_dictionary, embed_map=None):
     """
     Load all model components + apply vocab expansion
     """
@@ -52,7 +46,7 @@ def load_model(embed_map=None):
     # Load parameters
     print 'Loading model parameters...'
     params = init_params(options)
-    params = load_params(path_to_model, params)
+    params = load_params('%s.npz'%path_to_model, params)
     tparams = init_tparams(params)
 
     # Extractor functions
@@ -67,7 +61,7 @@ def load_model(embed_map=None):
     # Load word2vec, if applicable
     if embed_map == None:
         print 'Loading word2vec embeddings...'
-        embed_map = load_googlenews_vectors(path_to_word2vec)
+        embed_map = load_googlenews_vectors()
 
     # Lookup table using vocab expansion trick
     print 'Creating word lookup tables...'
@@ -149,7 +143,7 @@ def preprocess(text):
         X.append(result)
     return X
 
-def load_googlenews_vectors():
+def load_googlenews_vectors(path_to_word2vec='data/GoogleNews-vectors-negative300.bin'):
     """
     load the word2vec GoogleNews vectors
     """
