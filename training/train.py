@@ -64,10 +64,12 @@ def trainer(X,
     print model_options
 
     # reload options
-    if reload_ and os.path.exists(saveto):
-        print 'reloading...' + saveto
-        with open('%s.pkl'%saveto, 'rb') as f:
-            models_options = pkl.load(f)
+    # TODO: if loading old parameters you need to make sure you are using them
+    #  in the rest of the code
+    # if reload_ and os.path.exists(saveto):
+    #     print 'reloading...' + saveto
+    #     with open('%s.pkl'%saveto, 'rb') as f:
+    #         model_options = pkl.load(f)
 
     # load dictionary
     print 'Loading dictionary...'
@@ -84,7 +86,7 @@ def trainer(X,
     params = init_params(model_options)
     # reload parameters
     if reload_ and os.path.exists(saveto):
-        params = load_params(saveto, params)
+        params = load_params(saveto + '.npz', params)
 
     tparams = init_tparams(params)
 
